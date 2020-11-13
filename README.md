@@ -36,7 +36,7 @@ If ran locally by default the API is running in ```http://localhost:4000```
 ### Endpoint
 
 | Request method  | Path  | Headers  |
-| --- | --- |---|---|---|
+| --- | --- |---|
 | GET  | / | Content-Type: application/json  | 
 
 #### Example response
