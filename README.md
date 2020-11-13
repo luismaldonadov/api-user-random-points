@@ -22,7 +22,7 @@ Finished in 0.08 seconds
 Randomized with seed 528970
 ```
 
-7. Lastly, run ```mix phx.server``` to finally run the API :D , you should see something like this
+8. Lastly, run ```mix phx.server``` to finally run the API :D , you should see something like this
 ```
 [info] Running UserRandomPointsWeb.Endpoint with cowboy 2.8.0 at 0.0.0.0:4000 (http)
 [info] Access UserRandomPointsWeb.Endpoint at http://localhost:4000
