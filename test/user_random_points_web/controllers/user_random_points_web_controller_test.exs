@@ -9,7 +9,7 @@ defmodule UserRandomPointsWeb.UserRandomPointsControllerTest do
           Routes.user_random_points_path(conn, :show)
         )
 
-      assert %{"timestamp" => timestamp, "users" => users} = json_response(conn, 200)
+      assert %{"users" => users} = json_response(conn, 200)
       assert length(users) <= 2
     end
   end
