@@ -1,8 +1,8 @@
 defmodule UserRandomPoints.Users.OperationHandler do
   use GenServer
-  import Ecto.Query, warn: false
 
   alias UserRandomPoints.Repo
+  alias UserRandomPoints.Users
   alias UserRandomPoints.Users.User
 
   @max_number 100
@@ -36,11 +36,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
         _from,
         %{max_number: max_number, timestamp: timestamp} = state
       ) do
-    users =
-      User
-      |> where([usr], usr.points > ^max_number)
-      |> limit(2)
-      |> Repo.all()
+    users = Users.get_users_points_gt(max_number)
 
     response = %{users: users, timestamp: timestamp}
     new_state = Map.put(state, :timestamp, DateTime.utc_now())
@@ -54,9 +50,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
     |> Enum.each(fn user ->
       random_point_number = :rand.uniform(@max_number)
 
-      user
-      |> User.changeset(%{points: random_point_number})
-      |> Repo.update()
+      Users.update_user(user, %{points: random_point_number})
     end)
 
     schedule_users_points_update()
