@@ -1,19 +1,13 @@
-# UserRandomPoints
 
-To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Pre-requisistes
+  - Elixir 1.11.0
+  - OTP 23.0
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Enviroment variables
+1.- Inside the root folder you will find an .env sample file with the neccesary structure file
+needed to create the ```.env``` file
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+2.- After you created an ```.env ``` file in the root folder with
+the needed enviroment variables you can procced with the next steps.

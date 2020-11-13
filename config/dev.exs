@@ -4,7 +4,7 @@ use Mix.Config
 config :user_random_points, UserRandomPoints.Repo,
   username: System.get_env("DB_USERNAME"),
   password: System.get_env("DB_PASSWORD"),
-  database: "#{System.get_env("DB_NAME")}_dev",
+  database: System.get_env("DB_NAME"),
   hostname: System.get_env("DB_HOST"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
