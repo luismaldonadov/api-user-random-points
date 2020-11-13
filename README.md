@@ -1,19 +1,15 @@
-# UserRandomPoints
+## Pre-requisistes
+  - Elixir v1.11.0
+  - OTP v23.0
+  - PostgreSQL v10 or greater
 
-To start your Phoenix server:
+## Enviroment variables
+1.- Inside the root folder you will find an ```.env.sample``` file with the neccesary structure file
+needed to create the ```.env``` file
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+2.- After you created an ```.env ``` file in the root folder with
+the needed enviroment variables you can procced with the next steps.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## How to run
+1.- Start by ```git clone``` repo in your desired folder, once cloned,  access to the root of that folder.
+2.- 
