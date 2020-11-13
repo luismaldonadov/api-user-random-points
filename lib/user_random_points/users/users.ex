@@ -48,7 +48,7 @@ defmodule UserRandomPoints.Users do
       []
   """
   @spec get_users_gt_points(integer()) :: [%User{}] | []
-  def get_users_pointget_users_gt_pointss_gt(number) do
+  def get_users_gt_points(number) do
     User
     |> where([usr], usr.points > ^number)
     |> limit(2)
