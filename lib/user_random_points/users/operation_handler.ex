@@ -3,7 +3,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
 
   @max_number 100
 
-  def start_link do
+  def start_link(_) do
     random_max_number = :rand.uniform(@max_number)
 
     GenServer.start_link(__MODULE__, %{max_number: random_max_number, timestamp: nil},
