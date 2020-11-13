@@ -5,8 +5,8 @@
 
 ## How to run
 1.- Start by cloning the repository in your desired folder.
-2.- Access the root of the cloned repository.
-3.- Inside the root folder you will find an ```.env.sample``` file with the neccesary file structure needed to create the ```.env``` file
+2.- Access the root of the cloned folder repository.
+3.- Once inside the root folder you will find an ```.env.sample``` file with the neccesary file structure needed to create the ```.env``` file
 4.- After you created an ```.env ``` file in the root folder with the needed enviroment variables you can procced with the next steps.
 5.- Run ```source .env``` on root folder to load enviroment variables
 6.- Run ```mix setup``` to download dependencies and setup ecto. This could take a minute, the console will show the compiling of several dependencies, and at the end, the seed data will be inserted.
