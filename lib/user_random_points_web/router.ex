@@ -5,7 +5,8 @@ defmodule UserRandomPointsWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/api", UserRandomPointsWeb do
+  scope "/", UserRandomPointsWeb do
     pipe_through(:api)
+    get("/", UserRandomPointsController, :show)
   end
 end
