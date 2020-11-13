@@ -2,6 +2,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
   use GenServer
 
   alias UserRandomPoints.Users
+  alias UserRandomPoints.Users.User
 
   @max_number 100
   @update_users_points_after_ms 60 * 1000
@@ -25,8 +26,8 @@ defmodule UserRandomPoints.Users.OperationHandler do
     max number state internal property that is set randomly.
   """
   @spec get_users_max_number() ::
-          %{users: [%User{}], timestamp: NaiveDateTime}
-          | %{users: [], timestamp: NaiveDateTime}
+          %{users: [%User{}], timestamp: NaiveDateTime | nil}
+          | %{users: [], timestamp: NaiveDateTime | nil}
   def get_users_max_number() do
     GenServer.call(:users_operation_handler, :get_users_max_number)
   end
