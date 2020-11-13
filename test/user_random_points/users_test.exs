@@ -7,7 +7,7 @@ defmodule UserRandomPoints.UsersTest do
   describe "Users domain" do
     test "returns all users using get_all/0" do
       users = Users.get_all()
-      # Amount of users generated on test helper
+      # Amount of users generated on test helper seed
       assert length(users) == 10
     end
 
