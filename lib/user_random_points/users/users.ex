@@ -27,7 +27,7 @@ defmodule UserRandomPoints.Users do
 
     ## Examples
 
-      iex(1)> UserRandomPoints.Users.get_users_points_gt(23)
+      iex(1)> UserRandomPoints.Users.get_users_gt_points(23)
       [
         %UserRandomPoints.Users.User{
           __meta__: #Ecto.Schema.Metadata<:loaded, "Users">,
@@ -44,11 +44,11 @@ defmodule UserRandomPoints.Users do
           updated_at: ~N[2020-11-13 04:54:04]
         }
       ]
-      iex(1)> UserRandomPoints.Users.get_users_points_gt(100)
+      iex(1)> UserRandomPoints.Users.get_users_gt_points(100)
       []
   """
-  @spec get_users_points_gt(integer()) :: [%User{}] | []
-  def get_users_points_gt(number) do
+  @spec get_users_gt_points(integer()) :: [%User{}] | []
+  def get_users_pointget_users_gt_pointss_gt(number) do
     User
     |> where([usr], usr.points > ^number)
     |> limit(2)

@@ -34,7 +34,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
         _from,
         %{max_number: max_number, timestamp: timestamp} = state
       ) do
-    users = Users.get_users_points_gt(max_number)
+    users = Users.get_users_gt_points(max_number)
 
     response = %{users: users, timestamp: timestamp}
     new_state = Map.put(state, :timestamp, DateTime.utc_now())
