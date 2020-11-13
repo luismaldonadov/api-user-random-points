@@ -2,6 +2,8 @@ defmodule UserRandomPoints.Users.OperationHandler do
   use GenServer
   require Logger
 
+  import Ecto.Query, warn: false
+
   alias UserRandomPoints.Repo
   alias UserRandomPoints.Users.User
 
@@ -18,24 +20,51 @@ defmodule UserRandomPoints.Users.OperationHandler do
 
   @impl true
   def init(state) do
-    Process.send_after(self(), :update_users_points, @update_users_points_after_ms)
+    Process.send_after(
+      :users_operation_handler,
+      :update_users_points,
+      @update_users_points_after_ms
+    )
+
     {:ok, state}
+  end
+
+  def get_users_max_number() do
+    GenServer.call(:users_operation_handler, :get_users_max_number)
+  end
+
+  @impl true
+  def handle_call(:get_users_max_number, _from, state) do
+    users =
+      User
+      |> where([usr], usr.points > ^state.max_number)
+      |> limit(2)
+      |> Repo.all()
+
+    response = %{users: users, timestamp: state.timestamp}
+    new_state = Map.put(state, :timestamp, DateTime.utc_now())
+    {:reply, response, new_state}
   end
 
   @impl true
   def handle_info(:update_users_points, state) do
-    modified_users =
-      User
-      |> Repo.all()
-      |> Enum.each(fn user ->
-        random_point_number = :rand.uniform(@max_number)
+    User
+    |> Repo.all()
+    |> Enum.each(fn user ->
+      random_point_number = :rand.uniform(@max_number)
 
-        user
-        |> User.changeset(%{points: random_point_number})
-        |> Repo.update()
-      end)
+      user
+      |> User.changeset(%{points: random_point_number})
+      |> Repo.update()
+    end)
 
-    Process.send_after(self(), :update_users_points, @update_users_points_after_ms)
-    {:noreply, Map.put(state, :max_number, :rand.uniform(@max_number))}
+    Process.send_after(
+      :users_operation_handler,
+      :update_users_points,
+      @update_users_points_after_ms
+    )
+
+    state = Map.put(state, :max_number, :rand.uniform(@max_number))
+    {:noreply, state}
   end
 end
