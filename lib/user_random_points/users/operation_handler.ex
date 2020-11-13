@@ -1,9 +1,7 @@
 defmodule UserRandomPoints.Users.OperationHandler do
   use GenServer
 
-  alias UserRandomPoints.Repo
   alias UserRandomPoints.Users
-  alias UserRandomPoints.Users.User
 
   @max_number 100
   @update_users_points_after_ms 60 * 1000
@@ -45,8 +43,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
 
   @impl true
   def handle_info(:update_users_points, state) do
-    User
-    |> Repo.all()
+    Users.get_all_users()
     |> Enum.each(fn user ->
       random_point_number = :rand.uniform(@max_number)
 

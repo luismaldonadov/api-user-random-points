@@ -54,4 +54,36 @@ defmodule UserRandomPoints.Users do
     |> limit(2)
     |> Repo.all()
   end
+
+  @doc """
+    Get all Users
+
+    ## Examples
+
+      iex(1)> UserRandomPoints.Users.get_all_users()
+      [
+        %UserRandomPoints.Users.User{
+          __meta__: #Ecto.Schema.Metadata<:loaded, "Users">,
+          id: 72,
+          inserted_at: ~N[2020-11-13 03:45:47],
+          points: 75,
+          updated_at: ~N[2020-11-13 04:54:04]
+        },
+        %UserRandomPoints.Users.User{
+          __meta__: #Ecto.Schema.Metadata<:loaded, "Users">,
+          id: 73,
+          inserted_at: ~N[2020-11-13 03:45:47],
+          points: 39,
+          updated_at: ~N[2020-11-13 04:54:04]
+        }
+        .......
+      ]
+      iex(1)> UserRandomPoints.Users.get_all_users()
+      []
+  """
+  @spec get_all_users() :: [%User{}] | []
+  def get_all_users() do
+    User
+    |> Repo.all()
+  end
 end
