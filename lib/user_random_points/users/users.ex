@@ -60,7 +60,7 @@ defmodule UserRandomPoints.Users do
 
     ## Examples
 
-      iex(1)> UserRandomPoints.Users.get_all_users()
+      iex(1)> UserRandomPoints.Users.get_all()
       [
         %UserRandomPoints.Users.User{
           __meta__: #Ecto.Schema.Metadata<:loaded, "Users">,
@@ -78,11 +78,11 @@ defmodule UserRandomPoints.Users do
         }
         .......
       ]
-      iex(1)> UserRandomPoints.Users.get_all_users()
+      iex(1)> UserRandomPoints.Users.get_all()
       []
   """
-  @spec get_all_users() :: [%User{}] | []
-  def get_all_users() do
+  @spec get_all() :: [%User{}] | []
+  def get_all() do
     User
     |> Repo.all()
   end

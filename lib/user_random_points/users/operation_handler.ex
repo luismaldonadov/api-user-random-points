@@ -38,12 +38,13 @@ defmodule UserRandomPoints.Users.OperationHandler do
 
     response = %{users: users, timestamp: timestamp}
     new_state = Map.put(state, :timestamp, DateTime.utc_now())
+
     {:reply, response, new_state}
   end
 
   @impl true
   def handle_info(:update_users_points, state) do
-    Users.get_all_users()
+    Users.get_all()
     |> Enum.each(fn user ->
       random_point_number = :rand.uniform(@max_number)
 
@@ -51,8 +52,8 @@ defmodule UserRandomPoints.Users.OperationHandler do
     end)
 
     schedule_users_points_update()
-
     state = Map.put(state, :max_number, :rand.uniform(@max_number))
+
     {:noreply, state}
   end
 
