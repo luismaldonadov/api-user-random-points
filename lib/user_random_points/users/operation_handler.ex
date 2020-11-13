@@ -20,15 +20,15 @@ defmodule UserRandomPoints.Users.OperationHandler do
 
   @impl true
   def init(state) do
-    Process.send_after(
-      :users_operation_handler,
-      :update_users_points,
-      @update_users_points_after_ms
-    )
+    schedule_users_points_update()
 
     {:ok, state}
   end
 
+  @doc """
+    Get the users that have a greater number than the
+    max number state internal property that is set randomly
+  """
   def get_users_max_number() do
     GenServer.call(:users_operation_handler, :get_users_max_number)
   end
@@ -58,13 +58,17 @@ defmodule UserRandomPoints.Users.OperationHandler do
       |> Repo.update()
     end)
 
+    schedule_users_points_update()
+
+    state = Map.put(state, :max_number, :rand.uniform(@max_number))
+    {:noreply, state}
+  end
+
+  defp schedule_users_points_update() do
     Process.send_after(
       :users_operation_handler,
       :update_users_points,
       @update_users_points_after_ms
     )
-
-    state = Map.put(state, :max_number, :rand.uniform(@max_number))
-    {:noreply, state}
   end
 end
