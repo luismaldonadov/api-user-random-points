@@ -14,9 +14,11 @@ defmodule UserRandomPoints.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: UserRandomPoints.PubSub},
       # Start the Endpoint (http/https)
-      UserRandomPointsWeb.Endpoint
+      UserRandomPointsWeb.Endpoint,
       # Start a worker by calling: UserRandomPoints.Worker.start_link(arg)
       # {UserRandomPoints.Worker, arg}
+      # Start the User operation handler GenServer process
+      UserRandomPoints.Users.OperationHandler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
