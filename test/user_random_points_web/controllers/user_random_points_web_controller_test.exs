@@ -2,7 +2,6 @@ defmodule UserRandomPointsWeb.UserRandomPointsControllerTest do
   use UserRandomPointsWeb.ConnCase
 
   describe "GET /" do
-    # user_random_points_path
     test "returns users with timestamp", %{conn: conn} do
       conn =
         get(
