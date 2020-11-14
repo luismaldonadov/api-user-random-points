@@ -7,8 +7,12 @@ defmodule UserRandomPoints.Users.OperationHandler do
   @max_number 100
   @update_users_points_after_ms 60 * 1000
 
+  @doc """
+   Wrapper for GenSever start link with a named process :users_operation_handler
+  """
+  @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
   def start_link(_) do
-    random_max_number = :rand.uniform(@max_number)
+    random_max_number = Enum.random(0..@max_number)
 
     GenServer.start_link(__MODULE__, %{max_number: random_max_number, timestamp: nil},
       name: :users_operation_handler
@@ -29,7 +33,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
           %{users: [%User{}], timestamp: NaiveDateTime | nil}
           | %{users: [], timestamp: NaiveDateTime | nil}
   def get_users_max_number() do
-    GenServer.call(:users_operation_handler, :get_users_max_number)
+    GenServer.call(:users_operation_handle, :get_users_max_number)
   end
 
   @impl true
@@ -50,8 +54,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
   def handle_info(:update_users_points, state) do
     Users.get_all()
     |> Enum.each(fn user ->
-      random_point_number = :rand.uniform(@max_number)
-
+      random_point_number = Enum.random(0..@max_number)
       Users.update_user(user, %{points: random_point_number})
     end)
 
