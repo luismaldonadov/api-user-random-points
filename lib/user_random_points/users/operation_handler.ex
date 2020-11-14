@@ -33,7 +33,7 @@ defmodule UserRandomPoints.Users.OperationHandler do
           %{users: [%User{}], timestamp: NaiveDateTime | nil}
           | %{users: [], timestamp: NaiveDateTime | nil}
   def get_users_max_number() do
-    GenServer.call(:users_operation_handle, :get_users_max_number)
+    GenServer.call(:users_operation_handler, :get_users_max_number)
   end
 
   @impl true
